@@ -1,8 +1,14 @@
 # Realtime Facial Emotion Recognition
 
 # Introduction
-This repository demonstrates an end-to-end pipeline for real-time Facial emotion recognition application through full-stack development.
-The frontend is developed in react.js and the backend is developed in FastAPI. The emotion prediction model is built with Tensorflow Keras, and for real-time face detection with animation on the frontend, Tensorflow.js have been used.
+This repo includes simple implementation of realtime facial emotion recognition.
+
+Service       | Realization
+------------- | -------------
+Frontend  | React.js
+Backend | Fastapi
+Protocol | WebSocket
+Emotion Recognition | FER (tensorflow)
 
 # Implementation
 Implementation of the full-stack end-to-end face emotion recognition pipeline.
@@ -23,4 +29,26 @@ $ uvicorn main:app --reload
 ```sh
 $ cd frontend
 $ npm start
+```
+
+## Sample output
+```json
+{
+    "box": [
+        425,
+        209,
+        346,
+        346
+    ],
+    "emotions": {
+        "angry": 0.0,
+        "disgust": 0.0,
+        "fear": 0.0,
+        "happy": 0.97,
+        "sad": 0.0,
+        "surprise": 0.0,
+        "neutral": 0.03
+    },
+    "emotion": "happy"
+}
 ```

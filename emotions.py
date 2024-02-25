@@ -15,7 +15,7 @@ def get_bbox_prediction(image_b64, debug=False):
     """
     Getting emotional analysis of face on the given image (in case of few faces, algorithm takes first one)
 
-    :param str image_b64: image in base64 format
+    :param bytes image_b64: image in base64 format
     :param bool debug: not yet implemented
     :returns str fer_results: emotions with relative probs
     """
@@ -30,7 +30,9 @@ def get_bbox_prediction(image_b64, debug=False):
 
 
 if __name__ == "__main__":
-    img = cv2.imread(os.path.join(os.path.dirname(__file__), "resources/happy.jpg"))
+    with open(os.path.join(os.path.dirname(__file__), "resources/happy.jpg"), "rb") as f:
+        raw_img = f.read()
+    img_b64 = base64.b64encode(raw_img)
 
-    tf_version_results = get_bbox_prediction(img)
-    print(json.dumps(tf_version_results, default=float, indent=4))
+    results = get_bbox_prediction(img_b64)
+    print(json.dumps(results, default=float, indent=4))
