@@ -155,7 +155,7 @@ function App() {
           <label forhtml="Disgust" style={{color:'pink'}} >Disgusted </label>
           <progress id="Disgust" value="0" max = "100" >10%</progress>
         </div>
-        <input id="emotion_text" name="emotion_text" vale="Neutral"
+        <input id="emotion_text" name="emotion_text" value="neutral"
                style={{
                  position:"absolute",
                  width:200,
