@@ -62,6 +62,8 @@ function App() {
         document.getElementById("Sad").value = Math.round(predictions['emotions']['sad']*100)
         document.getElementById("Disgust").value = Math.round(predictions['emotions']['disgust']*100)
 
+        document.getElementById("emotion_text").value = predictions['emotion']
+
         console.log(predictions)
 
         // Get canvas context
