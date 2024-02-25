@@ -1,8 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import "./App.css";
-// import logo from './logo.svg';
 
-// import * as tf from "@tensorflow/tfjs";
 import Webcam from "react-webcam";
 import { drawMesh } from "./utilities";
 import useWebSocket from 'react-use-websocket';
@@ -10,11 +8,6 @@ import useWebSocket from 'react-use-websocket';
 function App() {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
-  // const blazeface = require('@tensorflow-models/blazeface')
-  // const { sendMessage, lastMessage, readyState, getWebSocket } = useWebSocket(
-  //   'ws://127.0.0.1:8000/ws/1',
-  //   { share: true }
-  // );
 
   //  Load blazeface
   const runFaceDetectorModel = async () => {
@@ -47,12 +40,8 @@ function App() {
       canvasRef.current.width = videoWidth;
       canvasRef.current.height = videoHeight;
 
-      // Make Detections
-      // const face = await net.estimateFaces(video);
-      //console.log(face);
-
       // Websocket
-      var socket = new WebSocket('ws://127.0.0.1:8000/ws/1')
+      var socket = new WebSocket('ws://127.0.0.1:8000/ws')
       var imageSrc = webcamRef.current.getScreenshot()
       var apiCall = {
         event: "localhost:subscribe",
@@ -61,7 +50,6 @@ function App() {
         },
       };
       socket.onopen = () => socket.send(JSON.stringify(apiCall))
-      // getWebSocket().send(JSON.stringify(apiCall))
       
       // getWebSocket().onmessage 
       socket.onmessage = function(event) {
@@ -75,11 +63,6 @@ function App() {
         document.getElementById("Disgust").value = Math.round(predictions['emotions']['disgust']*100)
 
         console.log(predictions)
-        // var bbox = predictions[0]["coordinates"]
-        // var name = predictions[0]["emotion"]
-        // console.log(resp)
-        // console.log(bbox)
-        // predictions = predictions
 
         // Get canvas context
         const ctx = canvasRef.current.getContext("2d");
